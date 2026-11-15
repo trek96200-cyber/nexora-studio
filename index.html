@@ -360,80 +360,52 @@
 
             <!-- DEMO CONTACT FORM -->
 
-           <form
+           
+<form
     class="contact-form"
     id="nexoraContactForm"
     action="https://formspree.io/f/xjywyrdn"
     method="POST"
 >
+    <div class="form-group">
+        <label for="contactName">Ваше ім'я</label>
+        <input
+            type="text"
+            id="contactName"
+            name="name"
+            placeholder="Введіть ваше ім'я"
+            required
+        >
+    </div>
 
-                <div class="form-group">
+    <div class="form-group">
+        <label for="contactEmail">Електронна пошта</label>
+        <input
+            type="email"
+            id="contactEmail"
+            name="email"
+            placeholder="Введіть вашу електронну пошту"
+            required
+        >
+    </div>
 
-                    <label for="contactName">
-                        Ваше ім'я
-                    </label>
+    <div class="form-group">
+        <label for="contactMessage">Ваше повідомлення</label>
+        <textarea
+            id="contactMessage"
+            name="message"
+            placeholder="Розкажіть про вашу ідею..."
+            rows="5"
+            required
+        ></textarea>
+    </div>
 
-                    <input
-                        type="text"
-                        id="contactName"
-                        placeholder="Введіть ваше ім'я"
-                        required
-                    >
+    <button type="submit" class="btn btn-primary">
+        Надіслати повідомлення
+    </button>
 
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="contactEmail">
-                        Електронна пошта
-                    </label>
-
-                    <input
-                        type="email"
-                        id="contactEmail"
-                        placeholder="Введіть вашу електронну пошту"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="contactMessage">
-                        Ваше повідомлення
-                    </label>
-
-                    <textarea
-                        id="contactMessage"
-                        placeholder="Розкажіть про вашу ідею..."
-                        rows="5"
-                        required
-                    ></textarea>
-
-                </div>
-
-
-                <button type="submit" class="btn btn-primary">
-                    Надіслати повідомлення
-                </button>
-
-                <p
-                    id="formStatus"
-                    role="status"
-                    aria-live="polite"
-                ></p>
-
-            </form>
-
-            <p class="form-note">
-                
-            </p>
-
-        </section>
-
-    </main>
+    <p id="formStatus" role="status" aria-live="polite"></p>
+</form>
 
 
     <!-- FOOTER -->
