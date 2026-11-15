@@ -31,27 +31,41 @@ const observer = new IntersectionObserver((entries) => {
     threshold: 0.12
 });
 
-document.querySelectorAll(".section, .contact").forEach(section => {
-    section.classList.add("reveal");
-    observer.observe(section);
-});
 
 document.addEventListener("DOMContentLoaded", function () {
     const contactForm = document.getElementById("nexoraContactForm");
+    const status = document.getElementById("formStatus");
 
-    if (!contactForm) {
-        console.error("Contact form not found!");
-        return;
-    }
+    if (!contactForm || !status) return;
 
-    contactForm.addEventListener("submit", function (event) {
+    contactForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        const status = document.getElementById("formStatus");
+        status.textContent = "Надсилаємо повідомлення...";
 
-        status.textContent =
-            "Thank you! Your demo message has been received.";
+        const formData = new FormData(contactForm);
 
-        contactForm.reset();
+        try {
+            const response = await fetch(contactForm.action, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    Accept: "application/json"
+                }
+            });
+
+            if (response.ok) {
+                status.textContent =
+                    "Дякуємо! Повідомлення успішно надіслано.";
+
+                contactForm.reset();
+            } else {
+                status.textContent =
+                    "Не вдалося надіслати повідомлення. Спробуйте ще раз.";
+            }
+        } catch (error) {
+            status.textContent =
+                "Помилка з'єднання. Перевірте інтернет і спробуйте ще раз.";
+        }
     });
 });
